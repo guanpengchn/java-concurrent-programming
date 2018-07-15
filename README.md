@@ -1,5 +1,6 @@
+# 《实战Java高并发程序设计》笔记和源码
 
-## 《实战Java 高并发程序设计》
+## 书籍概况
 
 - 作者: 葛一鸣 / 郭超
 - 出版社: 电子工业出版社
@@ -10,8 +11,9 @@
 
 ## 笔记
 
-- 学习Java并发编程，做了相关笔记和源代码整理，欢迎交流和 [Star](https://github.com/guanpengchn/java-concurrent-programming)
-- 具体笔记请见 [notes](https://github.com/guanpengchn/java-concurrent-programming/blob/master/notes)
+- 《实战Java高并发程序设计》中有很多代码范例，适合初学者通过实践入门并发编程，故而做了相关笔记并整理源代码，欢迎交流和 [Star](https://github.com/guanpengchn/java-concurrent-programming)
+- 笔记在 [notes](https://github.com/guanpengchn/java-concurrent-programming/blob/master/notes)，源代码在 [src](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src)
+- 如有需要电子书，可去CSDN[下载](https://download.csdn.net/download/oyueyang1/10389772?utm_source=bbsseo)
 
 ## 目录
 
