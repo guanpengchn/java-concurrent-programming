@@ -44,6 +44,10 @@ public static boolean Thread.interrupted() //判断是否中断，并清除中�
 在sleep时，如果来临中断，会进入中断异常，同时也会将标记位清空，所以异常处理那里经常要再次中断自己
 
 #### 2.2.4　等待（wait）和通知（notify）	41
+
+- wait会释放掉锁
+- [SimpleWN](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/chapter2/SimpleWN.java)
+
 #### 2.2.5　挂起（suspend）和继续执行（resume）线程	44
 
 - suspend和resume不推荐使用，因为不会释放锁资源，查看jstack时可以使用jps查看pid

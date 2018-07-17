@@ -6,10 +6,29 @@
 
 - [ReenterLock](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/chapter3/ReenterLock.java)
 - 可重入锁代表着一个线程可以多次获得同一把锁
+- 中断响应，[IntLock](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/chapter3/IntLock.java)
+- 锁申请等待限时，[TimeLock](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/chapter3/TimeLock.java)
+- 不带参数的[TryLock](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/chapter3/TryLock.java)
+- 公平锁需要维护一个有序队列，成本高，默认是非公平锁，[FairLock](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/chapter3/FairLock.java)
+
+重入锁的实现主要包含三个要素：
+
+- 原子状态，CAS
+- 等待队列
+- 阻塞原语park()和unpark()
 
 #### 3.1.2　重入锁的好搭档：Condition条件	80
+
+- wait和notify是和synchronize合作使用的，condition是和重入锁相关联的，[ReenterLockCondition](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/chapter3/ReenterLockCondition.java)
+
 #### 3.1.3　允许多个线程同时访问：信号量（Semaphore）	83
+
+- [SemapDemo](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/chapter3/SemapDemo.java)
+
 #### 3.1.4　ReadWriteLock读写锁	85
+
+
+
 #### 3.1.5　倒计时器：CountDownLatch	87
 #### 3.1.6　循环栅栏：CyclicBarrier	89
 #### 3.1.7　线程阻塞工具类：LockSupport	92
