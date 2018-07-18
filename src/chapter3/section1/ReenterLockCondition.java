@@ -1,4 +1,4 @@
-package chapter3;
+package chapter3.section1;
 
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;

@@ -1,10 +1,11 @@
-package chapter3;
+package chapter3.section1;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Semaphore;
 
 public class SemapDemo implements Runnable {
+    //5个一组输出
     final Semaphore semp = new Semaphore(5);
     @Override
     public void run() {

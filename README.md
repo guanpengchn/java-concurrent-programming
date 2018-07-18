@@ -11,9 +11,11 @@
 
 ## 笔记
 
-- 《实战Java高并发程序设计》中有很多代码范例，适合初学者通过实践入门并发编程，故而做了相关笔记并整理源代码，欢迎交流和 [Star](https://github.com/guanpengchn/java-concurrent-programming)
+- 《实战Java高并发程序设计》中有很多代码范例，适合初学者通过实践入门并发编程
+- 笔者做了相关笔记并整理源代码，欢迎交流和 [Star](https://github.com/guanpengchn/java-concurrent-programming)
 - 笔记在 [notes](https://github.com/guanpengchn/java-concurrent-programming/blob/master/notes)，源代码在 [src](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src)
 - 如有需要电子书，可去CSDN[下载](https://download.csdn.net/download/oyueyang1/10389772?utm_source=bbsseo)
+- part-部，chapter-章，section-节，paragraph/fragment/segment-完整的一段，passage-篇
 
 ## 目录
 

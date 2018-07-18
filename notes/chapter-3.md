@@ -4,12 +4,12 @@
     
 #### 3.1.1　synchronized的功能扩展：重入锁	71
 
-- [ReenterLock](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/chapter3/ReenterLock.java)
+- [ReenterLock](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/chapter3/section1/ReenterLock.java)
 - 可重入锁代表着一个线程可以多次获得同一把锁
-- 中断响应，[IntLock](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/chapter3/IntLock.java)
-- 锁申请等待限时，[TimeLock](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/chapter3/TimeLock.java)
-- 不带参数的[TryLock](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/chapter3/TryLock.java)
-- 公平锁需要维护一个有序队列，成本高，默认是非公平锁，[FairLock](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/chapter3/FairLock.java)
+- 中断响应，[IntLock](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/chapter3/section1/IntLock.java)
+- 锁申请等待限时，[TimeLock](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/chapter3/section1/TimeLock.java)
+- 不带参数的[TryLock](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/chapter3/section1/TryLock.java)
+- 公平锁需要维护一个有序队列，成本高，默认是非公平锁，[FairLock](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/chapter3/section1/FairLock.java)
 
 重入锁的实现主要包含三个要素：
 
@@ -19,20 +19,33 @@
 
 #### 3.1.2　重入锁的好搭档：Condition条件	80
 
-- wait和notify是和synchronize合作使用的，condition是和重入锁相关联的，[ReenterLockCondition](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/chapter3/ReenterLockCondition.java)
+- wait和notify是和synchronize合作使用的，condition是和重入锁相关联的，[ReenterLockCondition](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/chapter3/section1/ReenterLockCondition.java)
 
 #### 3.1.3　允许多个线程同时访问：信号量（Semaphore）	83
 
-- [SemapDemo](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/chapter3/SemapDemo.java)
+- [SemapDemo](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/chapter3/section1/SemapDemo.java)
 
 #### 3.1.4　ReadWriteLock读写锁	85
 
-
+- 实践了一下果然速度差距相当大
+- [ReadWriteLockDemo](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/chapter3/section1/ReadWriteLockDemo.java)
 
 #### 3.1.5　倒计时器：CountDownLatch	87
+
+- [CountDownLatchDemo](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/chapter3/section1/CountDownLatchDemo.java)
+
 #### 3.1.6　循环栅栏：CyclicBarrier	89
+
+- 这个理解起来难度大一些
+- [CyclicBarrierDemo](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/chapter3/section1/CyclicBarrierDemo.java)
+
 #### 3.1.7　线程阻塞工具类：LockSupport	92
-        
+
+- LockSupport的park和unpark函数，和suspend和resume函数比，不存在先后顺序，也就不会由于先resume后suspend导致程序死掉
+- 和信号量的区别是它只有一个许可，而信号量可以有多个
+- [LockSupportDemo](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/chapter3/section1/LockSupportDemo.java)
+- [LockSupportIntDemo](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/chapter3/section1/LockSupportIntDemo.java)
+          
 ### 3.2　线程复用：线程池	95
     
 #### 3.2.1　什么是线程池	96
