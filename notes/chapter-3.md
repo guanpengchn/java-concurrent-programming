@@ -50,10 +50,111 @@
     
 #### 3.2.1　什么是线程池	96
 #### 3.2.2　不要重复发明轮子：JDK对线程池的支持	97
+
+- 类图要好好看看，建议阅读jdk源代码了解下关系，整理如下：
+    - ExecutorService继承了Executor
+    - AbstractExecutorService实现了ExecutorService接口
+    - Executors生成了ThreadPoolExecutor
+    
+- Executors中包含的一部分线程池类型：
+    - newFixedThreadPool，[ThreadPoolDemo](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/chapter3/section2/ThreadPoolDemo.java)
+    - newSingleThreadExecutor
+    - newCachedThreadPool
+    - newSingleThreadScheduledExecutor
+    - newScheduledThreadPool 
+        - FixedRate是从上一个任务开始后计时，[ScheduledExecutorServiceDemo](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/chapter3/section2/ScheduledExecutorServiceDemo.java)
+        - FixedDelay是从上一个任务结束后计时
+
 #### 3.2.3　刨根究底：核心线程池的内部实现	102
+
+- 均使用ThreadPoolExecutor实现，最全的构造函数如下
+
+```java
+public ThreadPoolExecutor(int corePoolSize,
+                          int maximumPoolSize,
+                          long keepAliveTime,
+                          TimeUnit unit,
+                          BlockingQueue<Runnable> workQueue,
+                          RejectedExecutionHandler handler) {
+    this(corePoolSize, maximumPoolSize, keepAliveTime, unit, workQueue,
+         Executors.defaultThreadFactory(), handler);
+}
+```
+
+workQueue和handler需要特别理解一下，核心执行代码如下：
+
+```java
+public void execute(Runnable command) {
+    if (command == null)
+        throw new NullPointerException();
+    int c = ctl.get();
+    if (workerCountOf(c) < corePoolSize) {
+        if (addWorker(command, true))
+            return;
+        c = ctl.get();
+    }
+    if (isRunning(c) && workQueue.offer(command)) {
+        int recheck = ctl.get();
+        if (! isRunning(recheck) && remove(command))
+            reject(command);
+        else if (workerCountOf(recheck) == 0)
+            addWorker(null, false);
+    }
+    else if (!addWorker(command, false))
+        reject(command);
+}
+```
+
 #### 3.2.4　超负载了怎么办：拒绝策略	106
+
+- 四种系统定义的拒绝策略代码
+
+```java
+ public static class CallerRunsPolicy implements RejectedExecutionHandler {
+    public CallerRunsPolicy() { }
+    public void rejectedExecution(Runnable r, ThreadPoolExecutor e) {
+        if (!e.isShutdown()) {
+            r.run();
+        }
+    }
+}
+
+public static class AbortPolicy implements RejectedExecutionHandler {
+    public AbortPolicy() { }
+    public void rejectedExecution(Runnable r, ThreadPoolExecutor e) {
+        throw new RejectedExecutionException("Task " + r.toString() +
+                                             " rejected from " +
+                                             e.toString());
+    }
+}
+
+public static class DiscardPolicy implements RejectedExecutionHandler {
+    public DiscardPolicy() { }
+    public void rejectedExecution(Runnable r, ThreadPoolExecutor e) {
+    }
+}
+
+public static class DiscardOldestPolicy implements RejectedExecutionHandler {
+    public DiscardOldestPolicy() { }
+    public void rejectedExecution(Runnable r, ThreadPoolExecutor e) {
+        if (!e.isShutdown()) {
+            e.getQueue().poll();
+            e.execute(r);
+        }
+    }
+}
+```
+
+- [RejectThreadPoolDemo](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/chapter3/section2/RejectThreadPoolDemo.java)
+
 #### 3.2.5　自定义线程创建：ThreadFactory	109
+
+- [MyThreadFactory](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/chapter3/section2/MyThreadFactory.java)
+
 #### 3.2.6　我的应用我做主：扩展线程池	110
+
+
+
 #### 3.2.7　合理的选择：优化线程池线程数量	112
 #### 3.2.8　堆栈去哪里了：在线程池中寻找堆栈	113
 #### 3.2.9　分而治之：Fork/Join框架	117
