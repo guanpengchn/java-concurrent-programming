@@ -153,12 +153,77 @@ public static class DiscardOldestPolicy implements RejectedExecutionHandler {
 
 #### 3.2.6　我的应用我做主：扩展线程池	110
 
+- 比较了一下ExecuteService中submit和execute函数的区别，通过观察发现，sumit最终也会执行execute函数，具体分析可见这篇[文章](https://www.jianshu.com/p/e05b1d060d7d)
+- 顺着execute函数的位置，列一下这几个类的关系，代码如下：
+
+```java
+//最上层Executor接口
+public interface Executor {
+    void execute(Runnable command);
+}
+
+//继承了Executor接口的ExecutorService接口
+public interface ExecutorService extends Executor {
+    //中间各种函数，但不包含execute函数
+}
+
+//实现了ExecutorService接口的AbstractExecutorService抽象类
+public abstract class AbstractExecutorService implements ExecutorService {
+    //省略其他函数...
+    
+    //submit函数内调用了execute，但该抽象类没有execute函数的具体实现
+    public Future<?> submit(Runnable task) {
+        if (task == null) throw new NullPointerException();
+        RunnableFuture<Void> ftask = newTaskFor(task, null);
+        execute(ftask);//调用了Executor的execute方法
+        return ftask;
+    }
+}
+
+//实现了AbstractExecutorService抽象类的ThreadPoolExecutor类
+public class ThreadPoolExecutor extends AbstractExecutorService {
+    //省略其他函数...
+    
+    //execute函数的具体实现
+    public void execute(Runnable command) {
+        if (command == null)
+            throw new NullPointerException();
+        int c = ctl.get();
+        if (workerCountOf(c) < corePoolSize) {
+            if (addWorker(command, true))
+                return;
+            c = ctl.get();
+        }
+        if (isRunning(c) && workQueue.offer(command)) {
+            int recheck = ctl.get();
+            if (! isRunning(recheck) && remove(command))
+                reject(command);
+            else if (workerCountOf(recheck) == 0)
+                addWorker(null, false);
+        }
+        else if (!addWorker(command, false))
+            reject(command);
+    }
+}
+```
+
+- [ExtThreadPool](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/chapter3/section2/ExtThreadPool.java)
 
 
 #### 3.2.7　合理的选择：优化线程池线程数量	112
+
+请见书中公式
+
 #### 3.2.8　堆栈去哪里了：在线程池中寻找堆栈	113
+
+- 程序的本质意思就是写一个类重写execute和submit方法，加一个包装，让该包装可以抛出异常信息
+- [TraceThreadPoolExecutor](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/chapter3/section2/TraceThreadPoolExecutor.java)
+
 #### 3.2.9　分而治之：Fork/Join框架	117
-        
+
+- 本质就是一种递归的调用，然后不断缩小规模直到可以计算，最后将结果加起来
+- [CountTask](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/chapter3/section2/CountTask.java)
+
 ### 3.3　不要重复发明轮子：JDK的并发容器	121
     
 #### 3.3.1　超好用的工具类：并发集合简介	121
