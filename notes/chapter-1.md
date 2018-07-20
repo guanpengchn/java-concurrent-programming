@@ -1,16 +1,35 @@
 ## 第1章　走入并行世界	1
 
+> Give it up. The whole "parallel computing is the future" is a bunch of crock.
+
 ### 1.1　何去何从的并行计算 1
 
 #### 1.1.1　忘掉那该死的并行	2
+
+- BitKeeper真惨
+- Git真好用
+- 并行计算只有在图像处理和服务器编程2个领域可以使用
+
 #### 1.1.2　可怕的现实：摩尔定律的失效	4
+
+- CPU遇到了不可逾越的瓶颈
+
 #### 1.1.3　柳暗花明：不断地前进	5
+
+- CPU核心在不断变多
+
 #### 1.1.4　光明或是黑暗	6
 
 ### 1.2　你必须知道的几个概念	6
 
 #### 1.2.1　同步（Synchronous）和异步（Asynchronous）	7
+
+- 见书中图
+
 #### 1.2.2　并发（Concurrency）和并行（Parallelism）	8
+
+- 见书中图
+
 #### 1.2.3　临界区	9
 #### 1.2.4　阻塞（Blocking）和非阻塞（Non-Blocking）	9
 #### 1.2.5　死锁（Deadlock）、饥饿（Starvation）和活锁（Livelock）	9

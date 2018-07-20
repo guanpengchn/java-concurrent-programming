@@ -225,12 +225,47 @@ public class ThreadPoolExecutor extends AbstractExecutorService {
 - [CountTask](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/chapter3/section2/CountTask.java)
 
 ### 3.3　不要重复发明轮子：JDK的并发容器	121
-    
+
+- 本节代码都是`java.util.concurrent;`包中的源代码，故而不修改每个文件的包引入行，保持代码原有的样子，方便读者观看
+
 #### 3.3.1　超好用的工具类：并发集合简介	121
+
+- [ConcurrentHashMap](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/chapter3/section3/ConcurrentHashMap.java)，线程安全的HahsMap
+- [CopyOnWriteArrayList](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/chapter3/section3/CopyOnWriteArrayList.java)，线程安全的ArrayList一族
+- [ConcurrentLinkedQueue](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/chapter3/section3/ConcurrentLinkedQueue.java)，线程安全的LinkedList
+- [BlockingQueue](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/chapter3/section3/BlockingQueue.java)，阻塞队列
+- [ConcurrentSkipListMap](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/chapter3/section3/ConcurrentSkipListMap.java)，跳表，用于快速查找
+
 #### 3.3.2　线程安全的HashMap	122
+
+- 将HashMap变为线程安全的，可用以下方法，但并发级别不高
+
+```java
+public static Map m=Collections.synchronizedMap(new HashMap());
+```
+
+- 更加专业的并发HashMao是ConcurrentHashMap
+
 #### 3.3.3　有关List的线程安全	123
+
+- 将List变为线程安全的，可用以下方法
+
+```java
+public static List<String> l=Collections.synchronizedList(new LinkedList<String>());
+```
+
+- 更加专业的并发HashMap是[ConcurrentHashMap](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/chapter3/section3/ConcurrentHashMap.java)
+
 #### 3.3.4　高效读写的队列：深度剖析ConcurrentLinkedQueue	123
+
+- 这里很难，还要再读一遍再做笔记！！！！！
+
 #### 3.3.5　高效读取：不变模式下的CopyOnWriteArrayList	129
+
+- 读读不冲突，读写不冲突，只有写写冲突
+- 在写的时候先做一次数据复制，将修改的内容写入副本中，再讲副本替换原来的数据
+- [CopyOnWriteArrayList](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/chapter3/section3/CopyOnWriteArrayList.java)
+
 #### 3.3.6　数据共享通道：BlockingQueue	130
 #### 3.3.7　随机数据结构：跳表（SkipList）	134
         
