@@ -16,6 +16,7 @@
 - 笔记在 [notes](https://github.com/guanpengchn/java-concurrent-programming/blob/master/notes)，源代码在 [src](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src)
 - 如有需要电子书，可去CSDN[下载](https://download.csdn.net/download/oyueyang1/10389772?utm_source=bbsseo)
 - part-部，chapter-章，section-节，paragraph/fragment/segment-完整的一段，passage-篇
+- 笔记中使用的JDK源代码[仓库](https://github.com/guanpengchn/JDK)，fork于[zxiaofan的JDK仓库](https://github.com/zxiaofan/JDK)
 
 ## 目录
 

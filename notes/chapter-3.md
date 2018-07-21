@@ -230,11 +230,13 @@ public class ThreadPoolExecutor extends AbstractExecutorService {
 
 #### 3.3.1　超好用的工具类：并发集合简介	121
 
-- [ConcurrentHashMap](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/chapter3/section3/ConcurrentHashMap.java)，线程安全的HahsMap
-- [CopyOnWriteArrayList](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/chapter3/section3/CopyOnWriteArrayList.java)，线程安全的ArrayList一族
-- [ConcurrentLinkedQueue](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/chapter3/section3/ConcurrentLinkedQueue.java)，线程安全的LinkedList
-- [BlockingQueue](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/chapter3/section3/BlockingQueue.java)，阻塞队列
-- [ConcurrentSkipListMap](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/chapter3/section3/ConcurrentSkipListMap.java)，跳表，用于快速查找
+注：此处使用[JDK1.7](https://github.com/guanpengchn/JDK/tree/master/JDK1.7)的源代码
+
+- [ConcurrentHashMap](https://github.com/guanpengchn/JDK/blob/master/JDK1.7/src/java/util/concurrent/ConcurrentHashMap.java)，线程安全的HahsMap
+- [CopyOnWriteArrayList](https://github.com/guanpengchn/JDK/blob/master/JDK1.7/src/java/util/concurrent/CopyOnWriteArrayList.java)，线程安全的ArrayList一族
+- [ConcurrentLinkedQueue](https://github.com/guanpengchn/JDK/blob/master/JDK1.7/src/java/util/concurrent/ConcurrentLinkedQueue.java)，线程安全的LinkedList
+- [BlockingQueue](https://github.com/guanpengchn/JDK/blob/master/JDK1.7/src/java/util/concurrent/BlockingQueue.java)，阻塞队列
+- [ConcurrentSkipListMap](https://github.com/guanpengchn/JDK/blob/master/JDK1.7/src/java/util/concurrent/ConcurrentSkipListMap.java)，跳表，用于快速查找
 
 #### 3.3.2　线程安全的HashMap	122
 
