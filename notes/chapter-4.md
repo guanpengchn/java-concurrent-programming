@@ -52,15 +52,59 @@
 ### 4.3　人手一支笔：ThreadLocal	147
 
 #### 4.3.1　ThreadLocal的简单使用	148
+
+- 这个demo测试没有ThreadLocal，仅仅是对象在run内部new出来也行呀，不是很懂
+- [ThreadLocalDemo](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/chapter4/ThreadLocalDemo.java)
+
 #### 4.3.2　ThreadLocal的实现原理	149
+
+- ThreadLocalMap我在jdk1.8下运行不出效果来，作者在书中也提到了，二者实现方式不同
+- [ThreadLocalMap](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/chapter4/ThreadLocalMap.java)
+- WeakHashMap和HashMap的区别可以见该[文章](http://mzlly999.iteye.com/blog/1126049)和代码[WeakVsHashMap](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/chapter4/WeakVsHashMap.java)
+- 理解弱引用和强引用概念
+
 #### 4.3.3　对性能有何帮助	155
+
+- 见下面demo可得ThreadLocal的效率还是很高的
+- [ThreadLocalPerformance](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/chapter4/ThreadLocalPerformance.java)
 
 ### 4.4　无锁	157
 
+- 无锁策略使用一种叫做比较交换的技术（CAS Compare And Swap）
+
 #### 4.4.1　与众不同的并发策略：比较交换（CAS）	158
+
+- 天生免疫死锁，没有锁竞争和线程切换的开销
+- CAS(V,E,N)，V表示要更新的变量，E表示预期值，N表示新值，当V=E时，才会将V值设为N，如果不相等则该线程被告知失败，可以再次尝试
+- 硬件层面现代处理器已经支持原子化的CAS指令
+
 #### 4.4.2　无锁的线程安全整数：AtomicInteger	159
+
+- atomic包中实现了直接使用CAS的线程安全类型
+- [AtomicIntegerDemo](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/chapter4/AtomicIntegerDemo.java)
+
 #### 4.4.3　Java中的指针：Unsafe类	161
+
+- native方法是不用java实现的
+- [compareAndSet](https://github.com/guanpengchn/JDK/blob/master/JDK1.7/src/java/util/concurrent/atomic/AtomicInteger.java#L134-L136)
+- Unsafe类在rt.jar中，jdk无法找到
+- JDK开发人员并不希望大家使用Unsafe类，下面的代码，会检查调用getUnsafe函数的类，如果这个类的ClassLoader不为空，直接抛出异常拒绝工作，这使得自己的程序无法直接调用Unsafe类
+
+```java
+public static Unsafe getUnsafe() {
+    Class cc = Reflection.getCallerClass();
+    if (cc.getClassLoader() != null)
+        throw new SecurityException("Unsafe");
+    return theUnsafe;
+}
+```
+
+- 注意：根据Java类加载器的原理，应用程序的类由App Loader加载，而系统核心的类，如rt.jar中的由Bootstrap类加载器加载。Bootstrap加载器没有java对象的对象，因此试图获得该加载器会返回null，所以当一个类的类加载器为null时，说明是由Bootstrap加载的，这个类也极可能是rt.jar中的类
+
 #### 4.4.4　无锁的对象引用：AtomicReference	162
+
+- AtomicInteger是对整数的封装，AtomicReference是对对象的封装
+
 #### 4.4.5　带有时间戳的对象引用：AtomicStampedReference	165
 #### 4.4.6　数组也能无锁：AtomicIntegerArray	168
 #### 4.4.7　让普通变量也享受原子操作：AtomicIntegerFieldUpdater	169
