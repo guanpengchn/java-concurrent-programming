@@ -1,4 +1,4 @@
-package chapter4;
+package chapter4.section4;
 
 import java.util.concurrent.atomic.AtomicInteger;
 

@@ -54,19 +54,19 @@
 #### 4.3.1　ThreadLocal的简单使用	148
 
 - 这个demo测试没有ThreadLocal，仅仅是对象在run内部new出来也行呀，不是很懂
-- [ThreadLocalDemo](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/chapter4/ThreadLocalDemo.java)
+- [ThreadLocalDemo](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/chapter4/section3/ThreadLocalDemo.java)
 
 #### 4.3.2　ThreadLocal的实现原理	149
 
 - ThreadLocalMap我在jdk1.8下运行不出效果来，作者在书中也提到了，二者实现方式不同
-- [ThreadLocalMap](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/chapter4/ThreadLocalMap.java)
-- WeakHashMap和HashMap的区别可以见该[文章](http://mzlly999.iteye.com/blog/1126049)和代码[WeakVsHashMap](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/chapter4/WeakVsHashMap.java)
-- 理解弱引用和强引用概念
+- [ThreadLocalDemo_Gc](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/chapter4/section3/ThreadLocalDemo_Gc.java)
+- WeakHashMap和HashMap的区别可以见该[文章](http://mzlly999.iteye.com/blog/1126049)和代码[WeakVsHashMap](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/chapter4/section3/WeakVsHashMap.java)
+- 理解弱引用和强引用概念，可参考[Java 7之基础 - 强引用、弱引用、软引用、虚引用](https://blog.csdn.net/mazhimazh/article/details/19752475)
 
 #### 4.3.3　对性能有何帮助	155
 
 - 见下面demo可得ThreadLocal的效率还是很高的
-- [ThreadLocalPerformance](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/chapter4/ThreadLocalPerformance.java)
+- [ThreadLocalPerformance](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/chapter4/section3/ThreadLocalPerformance.java)
 
 ### 4.4　无锁	157
 
@@ -81,7 +81,7 @@
 #### 4.4.2　无锁的线程安全整数：AtomicInteger	159
 
 - atomic包中实现了直接使用CAS的线程安全类型
-- [AtomicIntegerDemo](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/chapter4/AtomicIntegerDemo.java)
+- [AtomicIntegerDemo](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/chapter4/section4/AtomicIntegerDemo.java)
 
 #### 4.4.3　Java中的指针：Unsafe类	161
 
@@ -104,12 +104,35 @@ public static Unsafe getUnsafe() {
 #### 4.4.4　无锁的对象引用：AtomicReference	162
 
 - AtomicInteger是对整数的封装，AtomicReference是对对象的封装
+- 运行下面demo可以见到错误，进行了多次充值，原因是状态可能不同，但是值却可能相同，所以不应该用值来判断状态
+- [AtomicReferenceDemo](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/chapter4/section4/AtomicReferenceDemo.java)
 
 #### 4.4.5　带有时间戳的对象引用：AtomicStampedReference	165
+
+- 对象值和时间戳必须都一样才能修改成功，所以只会充值一次
+- [AtomicStampedReferenceDemo](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/chapter4/section4/AtomicStampedReferenceDemo.java)
+
 #### 4.4.6　数组也能无锁：AtomicIntegerArray	168
+
+- [AtomicIntegerArrayDemo](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/chapter4/section4/AtomicIntegerArrayDemo.java)
+
 #### 4.4.7　让普通变量也享受原子操作：AtomicIntegerFieldUpdater	169
+
+- 可以包装普通变量，让其也具有原子操作
+- [AtomicIntegerFieldUpdaterDemo](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/chapter4/section4/AtomicIntegerFieldUpdaterDemo.java)
+- 变量必须可见，不能为private
+- 为确保变量被正确读取，需要有volatile
+- CAS通过偏移量赋值，不支持static（Unsafe, objectFieldOffset不支持静态变量）
+
 #### 4.4.8　挑战无锁算法：无锁的Vector实现	171
+
+- N_BUCKET为30，相当于有30个数组，第一个数组大小FIRST_BUCKET_SIZE为8，但是Vector之后会不断翻倍，第二个数组就是16个，最终能2^33左右
+- 这段比较复杂，多看
+
 #### 4.4.9　让线程之间互相帮助：细看SynchronousQueue的实现	176
 
 ### 4.5　有关死锁的问题	179
+
+- [DeadLock](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/chapter4/section5/DeadLock.java)
+
 ### 4.6　参考文献	183

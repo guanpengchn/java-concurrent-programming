@@ -1,4 +1,4 @@
-package chapter4;
+package chapter4.section3;
 
 import java.util.Random;
 import java.util.concurrent.*;
