@@ -1,14 +1,5 @@
 # 《实战Java高并发程序设计》笔记和源码
 
-## 书籍概况
-
-- 作者: 葛一鸣 / 郭超
-- 出版社: 电子工业出版社
-- 出版年: 2015-11
-- 页数: 352
-- 定价: 69.00元
-- ISBN: 9787121273049
-
 ## 笔记
 
 - 《实战Java高并发程序设计》中有很多代码范例，适合初学者通过实践入门并发编程
@@ -17,6 +8,15 @@
 - 如有需要电子书，可去CSDN[下载](https://download.csdn.net/download/oyueyang1/10389772?utm_source=bbsseo)
 - part-部，chapter-章，section-节，paragraph/fragment/segment-完整的一段，passage-篇
 - 笔记中使用的JDK源代码[仓库](https://github.com/guanpengchn/JDK)，fork于[zxiaofan的JDK仓库](https://github.com/zxiaofan/JDK)
+
+## 书籍概况
+
+- 作者: 葛一鸣 / 郭超
+- 出版社: 电子工业出版社
+- 出版年: 2015-11
+- 页数: 352
+- 定价: 69.00元
+- ISBN: 9787121273049
 
 ## 目录
 
