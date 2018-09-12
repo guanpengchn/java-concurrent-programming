@@ -4,12 +4,12 @@
     
 #### 3.1.1　synchronized的功能扩展：重入锁	71
 
-- [ReenterLock](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/main/java/ch3/section1/ReenterLock.java)
+- [ReenterLock](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/main/java/ch3/s1/ReenterLock.java)
 - 可重入锁代表着一个线程可以多次获得同一把锁
-- 中断响应，[IntLock](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/main/java/ch3/section1/IntLock.java)
-- 锁申请等待限时，[TimeLock](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/main/java/ch3/section1/TimeLock.java)
-- 不带参数的[TryLock](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/main/java/ch3/section1/TryLock.java)
-- 公平锁需要维护一个有序队列，成本高，默认是非公平锁，[FairLock](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/main/java/ch3/section1/FairLock.java)
+- 中断响应，[IntLock](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/main/java/ch3/s1/IntLock.java)
+- 锁申请等待限时，[TimeLock](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/main/java/ch3/s1/TimeLock.java)
+- 不带参数的[TryLock](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/main/java/ch3/s1/TryLock.java)
+- 公平锁需要维护一个有序队列，成本高，默认是非公平锁，[FairLock](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/main/java/ch3/s1/FairLock.java)
 
 重入锁的实现主要包含三个要素：
 
@@ -19,32 +19,32 @@
 
 #### 3.1.2　重入锁的好搭档：Condition条件	80
 
-- wait和notify是和synchronize合作使用的，condition是和重入锁相关联的，[ReenterLockCondition](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/main/java/ch3/section1/ReenterLockCondition.java)
+- wait和notify是和synchronize合作使用的，condition是和重入锁相关联的，[ReenterLockCondition](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/main/java/ch3/s1/ReenterLockCondition.java)
 
 #### 3.1.3　允许多个线程同时访问：信号量（Semaphore）	83
 
-- [SemapDemo](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/main/java/ch3/section1/SemapDemo.java)
+- [SemapDemo](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/main/java/ch3/s1/SemapDemo.java)
 
 #### 3.1.4　ReadWriteLock读写锁	85
 
 - 实践了一下果然速度差距相当大
-- [ReadWriteLockDemo](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/main/java/ch3/section1/ReadWriteLockDemo.java)
+- [ReadWriteLockDemo](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/main/java/ch3/s1/ReadWriteLockDemo.java)
 
 #### 3.1.5　倒计时器：CountDownLatch	87
 
-- [CountDownLatchDemo](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/main/java/ch3/section1/CountDownLatchDemo.java)
+- [CountDownLatchDemo](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/main/java/ch3/s1/CountDownLatchDemo.java)
 
 #### 3.1.6　循环栅栏：CyclicBarrier	89
 
 - 这个理解起来难度大一些
-- [CyclicBarrierDemo](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/main/java/ch3/section1/CyclicBarrierDemo.java)
+- [CyclicBarrierDemo](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/main/java/ch3/s1/CyclicBarrierDemo.java)
 
 #### 3.1.7　线程阻塞工具类：LockSupport	92
 
 - LockSupport的park和unpark函数，和suspend和resume函数比，不存在先后顺序，也就不会由于先resume后suspend导致程序死掉
 - 和信号量的区别是它只有一个许可，而信号量可以有多个
-- [LockSupportDemo](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/main/java/ch3/section1/LockSupportDemo.java)
-- [LockSupportIntDemo](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/main/java/ch3/section1/LockSupportIntDemo.java)
+- [LockSupportDemo](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/main/java/ch3/s1/LockSupportDemo.java)
+- [LockSupportIntDemo](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/main/java/ch3/s1/LockSupportIntDemo.java)
           
 ### 3.2　线程复用：线程池	95
     
@@ -57,12 +57,12 @@
     - Executors生成了ThreadPoolExecutor
     
 - Executors中包含的一部分线程池类型：
-    - newFixedThreadPool，[ThreadPoolDemo](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/main/java/ch3/section2/ThreadPoolDemo.java)
+    - newFixedThreadPool，[ThreadPoolDemo](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/main/java/ch3/s2/ThreadPoolDemo.java)
     - newSingleThreadExecutor
     - newCachedThreadPool
     - newSingleThreadScheduledExecutor
     - newScheduledThreadPool 
-        - FixedRate是从上一个任务开始后计时，[ScheduledExecutorServiceDemo](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/main/java/ch3/section2/ScheduledExecutorServiceDemo.java)
+        - FixedRate是从上一个任务开始后计时，[ScheduledExecutorServiceDemo](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/main/java/ch3/s2/ScheduledExecutorServiceDemo.java)
         - FixedDelay是从上一个任务结束后计时
 
 #### 3.2.3　刨根究底：核心线程池的内部实现	102
@@ -145,11 +145,11 @@ public static class DiscardOldestPolicy implements RejectedExecutionHandler {
 }
 ```
 
-- [RejectThreadPoolDemo](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/main/java/ch3/section2/RejectThreadPoolDemo.java)
+- [RejectThreadPoolDemo](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/main/java/ch3/s2/RejectThreadPoolDemo.java)
 
 #### 3.2.5　自定义线程创建：ThreadFactory	109
 
-- [MyThreadFactory](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/main/java/ch3/section2/MyThreadFactory.java)
+- [MyThreadFactory](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/main/java/ch3/s2/MyThreadFactory.java)
 
 #### 3.2.6　我的应用我做主：扩展线程池	110
 
@@ -207,7 +207,7 @@ public class ThreadPoolExecutor extends AbstractExecutorService {
 }
 ```
 
-- [ExtThreadPool](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/main/java/ch3/section2/ExtThreadPool.java)
+- [ExtThreadPool](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/main/java/ch3/s2/ExtThreadPool.java)
 
 
 #### 3.2.7　合理的选择：优化线程池线程数量	112
@@ -217,12 +217,12 @@ public class ThreadPoolExecutor extends AbstractExecutorService {
 #### 3.2.8　堆栈去哪里了：在线程池中寻找堆栈	113
 
 - 程序的本质意思就是写一个类重写execute和submit方法，加一个包装，让该包装可以抛出异常信息
-- [TraceThreadPoolExecutor](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/main/java/ch3/section2/TraceThreadPoolExecutor.java)
+- [TraceThreadPoolExecutor](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/main/java/ch3/s2/TraceThreadPoolExecutor.java)
 
 #### 3.2.9　分而治之：Fork/Join框架	117
 
 - 本质就是一种递归的调用，然后不断缩小规模直到可以计算，最后将结果加起来
-- [CountTask](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/main/java/ch3/section2/CountTask.java)
+- [CountTask](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/main/java/ch3/s2/CountTask.java)
 
 ### 3.3　不要重复发明轮子：JDK的并发容器	121
 
@@ -256,7 +256,7 @@ public static Map m=Collections.synchronizedMap(new HashMap());
 public static List<String> l=Collections.synchronizedList(new LinkedList<String>());
 ```
 
-- 更加专业的并发HashMap是[ConcurrentHashMap](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/main/java/ch3/section3/ConcurrentHashMap.java)
+- 更加专业的并发HashMap是[ConcurrentHashMap](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/main/java/ch3/s3/ConcurrentHashMap.java)
 
 #### 3.3.4　高效读写的队列：深度剖析ConcurrentLinkedQueue	123
 
@@ -266,7 +266,7 @@ public static List<String> l=Collections.synchronizedList(new LinkedList<String>
 
 - 读读不冲突，读写不冲突，只有写写冲突
 - 在写的时候先做一次数据复制，将修改的内容写入副本中，再讲副本替换原来的数据
-- [CopyOnWriteArrayList](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/main/java/ch3/section3/CopyOnWriteArrayList.java)
+- [CopyOnWriteArrayList](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/main/java/ch3/s3/CopyOnWriteArrayList.java)
 
 #### 3.3.6　数据共享通道：BlockingQueue	130
 #### 3.3.7　随机数据结构：跳表（SkipList）	134
