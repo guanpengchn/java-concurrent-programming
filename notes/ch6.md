@@ -133,27 +133,79 @@ public static void main(String[] args){
 
 #### 6.4.2　从集合得到并行流	268
 
+```java
+List<Student> ss =new ArrayList<Student>();
+double ave=ss.stream().mapToInt(s->s.score).average().getAsDouble();
 
+double ave=ss.parallelStream().mapToInt(s->s.score).average().getAsDouble();
+```
 
 #### 6.4.3　并行排序	268
 
+- 并行排序
+
+```java
+int []arr=new int[10000000];
+Arrays.parallelSort(arr);
+```
+
+- 并行随机值
+
+```java
+Random r =new Random();
+Arrays.setAll(arr,(i)->r.nextInt());
+
+Arrays.parallelSetAll(arr,(i)->r.nextInt());
+```
+
 ### 6.5　增强的Future：CompletableFuture	269
 
+- 为函数式编程中的流式调用准备
+
 #### 6.5.1　完成了就通知我	269
+
+- [Example1](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/main/java/ch6/s5/Example1.java)
+
 #### 6.5.2　异步执行任务	270
+
+- [Example2](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/main/java/ch6/s5/Example2.java)
+
 #### 6.5.3　流式调用	272
+
+- [Example3](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/main/java/ch6/s5/Example3.java)
+
 #### 6.5.4　CompletableFuture中的异常处理	272
+
+- [Example4](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/main/java/ch6/s5/Example4.java)
+
 #### 6.5.5　组合多个CompletableFuture	273
+
+- [Example5](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/main/java/ch6/s5/Example5.java)
+- [Example6](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/main/java/ch6/s5/Example6.java)
 
 ### 6.6　读写锁的改进：StampedLock	274
 
 #### 6.6.1　StampedLock使用示例	275
+
+- [Point](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/main/java/ch6/s6/Point.java)
+
 #### 6.6.2　StampedLock的小陷阱	276
+
+- [StampedLockCPUDemo](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/main/java/ch6/s6/StampedLockCPUDemo.java)
+
 #### 6.6.3　有关StampedLock的实现思想	278
+
+- 内部实现基于CLH锁，CLH是一种自旋锁，保证没有饥饿发生并且保证FIFO的服务顺序
 
 ### 6.7　原子类的增强	281
 
 #### 6.7.1　更快的原子类：LongAdder	281
+
+- 热点分离，类似于ConcurrentHashMap
+- 性能更好，好于AtomicInteger，而且使用了@sun.misc.Contended来避免伪共享
+
 #### 6.7.2　LongAdder的功能增强版：LongAccumulator	287
+
+- [LongAccumulatorDemo](https://github.com/guanpengchn/java-concurrent-programming/blob/master/src/main/java/ch6/s7/LongAccumulatorDemo.java)
 
 ### 6.8　参考文献	288
