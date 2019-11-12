@@ -37,7 +37,7 @@ public class Main {
         Producer producer = new Producer(ringBuffer);
         ByteBuffer bb = ByteBuffer.allocate(8);
         for (long l = 0; true; l++) {
-            bb.putLong(0, 1);
+            bb.putLong(0, l);
             producer.pushData(bb);
             Thread.sleep(100);
             System.out.println("add data "+l);
